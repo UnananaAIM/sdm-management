@@ -44,14 +44,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
     // --- GRUP KHUSUS UNTUK ROLE ADMIN ---
     Route::middleware(['role:Admin'])->prefix('admin')->name('admin.')->group(function () {
         Route::get('/', [AdminController::class, 'index'])->name('index');
-        // Tambahkan route admin lain di sini, contoh:
-        // Route::get('/users', [UserController::class, 'index'])->name('users.index');
     });
 
     // --- GRUP KHUSUS UNTUK ROLE PROJECT DIRECTOR & ADMIN ---
     Route::middleware(['role:Admin|Project Director'])->group(function () {
         Route::get('/projects/create', [ProjectController::class, 'create'])->name('projects.create');
-        // Tambahkan route lain yang bisa diakses Admin & PD di sini
     });
 
 });
